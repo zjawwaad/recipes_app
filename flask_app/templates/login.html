@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <h1>Recipe Share</h1>
+    <div class="container">
+        <div class="register">
+            <h2>Register</h2>
+            <form method="POST" action="/registration">
+                <label>First name:</label>
+                <input type="text" id="first_name" name="first_name"><br>
+                {% for message in get_flashed_messages( category_filter = ['error_registration_first_name'] ) %}
+                    {{message}}
+                {% endfor %}
+
+                <label>Last name:</label>
+                <input type="text" id="last_name" name="last_name"><br>
+                {% for message in get_flashed_messages( category_filter = ['error_registration_last_name'] ) %}
+                    {{message}}
+                {% endfor %}
+
+                <label>Email:</label>
+                <input type="email" id="email" name="email"><br>
+                {% for message in get_flashed_messages( category_filter = ['error_registration_email'] ) %}
+                    {{message}}
+                {% endfor %}
+
+                <label>Password:</label>
+                <input type="password" id="password" name="password"><br>
+
+
+                <label>Confirm PW:</label>
+                <input type="password" id="confirm" name="confirm"><br>
+                {% for message in get_flashed_messages( category_filter = ['error_registration_confirm'] ) %}
+                    {{message}}
+                {% endfor %}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="LogIn">
+            <form method="POST" action='/user/login'>
+                <label>Email:</label><br>
+                <input type="email" id="email" name="email">
+                
+                <label>Password:</label><br>
+                <input type="password" id="password" name="password">
+                {% for message in get_flashed_messages( category_filter = ['error_login_credentials'] ) %}
+                    {{message}}
+                {% endfor %}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
