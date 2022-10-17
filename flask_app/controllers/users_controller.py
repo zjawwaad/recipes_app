@@ -31,7 +31,7 @@ def register():
     session['email'] = data['email']
     session['user_id'] = user_id
 
-    return redirect( '/recipes' )
+    return render_template('login.html')  
 
 
 
@@ -47,7 +47,7 @@ def process_login():
         session['email'] = current_user.email
         session['user_id'] = current_user.id
 
-        return redirect( '/recipes' )
+        return render_template('login.html')  
     else:
         flash('Wrong Credentials', "error_login_credentials")
         return redirect(  '/' )
